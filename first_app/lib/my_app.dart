@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      title: "Gerador de nomes",
       theme: ThemeData(
         primarySwatch: Colors.deepPurple,
       ),
