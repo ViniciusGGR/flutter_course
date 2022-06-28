@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// english_words - Gera pares de palavras aleatórias.
 import 'package:english_words/english_words.dart';
 
 class HomePage extends StatelessWidget {
@@ -35,6 +36,8 @@ class _RandomWordsState extends State<RandomWords> {
   // Lista que salva as palavras sugeridas.
   final _suggestions = <WordPair>[];
 
+  final _saved = <WordPair>{};
+
   // Variável que define uma fonte maior.
   final _biggerFont = const TextStyle(
     // Define o tamanho da fonte como 18.
@@ -59,12 +62,19 @@ class _RandomWordsState extends State<RandomWords> {
           _suggestions.addAll(generateWordPairs().take(10));
         }
 
+        final alreadySaved = _saved.contains(_suggestions[index]);
+
         return ListTile(
           title: Text(
             // Retorna cada item da lista com a primeira letra de cada palavra em maiúscula.
             _suggestions[index].asPascalCase,
             // Define a fonte como 18 que foi definida na variável "_biggerFont".
             style: _biggerFont,
+          ),
+          trailing: Icon(
+            alreadySaved ? Icons.favorite : Icons.favorite_border,
+            color: alreadySaved ? Colors.red : null,
+            semanticLabel: alreadySaved ? "Remover dos favoritos" : "Favoritar",
           ),
         );
       }
