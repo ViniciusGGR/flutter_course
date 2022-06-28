@@ -7,18 +7,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Gerador de nomes",
-          style: TextStyle(
-            color: Colors.black
-          )
-        ),
-        backgroundColor: Colors.white,
-        centerTitle: true,
-      ),
-      body: const Center(
+    return const Scaffold(
+      body: Center(
         child: RandomWords(),
       ),
     );
@@ -50,34 +40,90 @@ class _RandomWordsState extends State<RandomWords> {
 
   @override
   Widget build(BuildContext context) {
-    // ListView com Scroll infinito
-    return ListView.builder(
-      // Espaçamento de 16 em todos os lados da lista.
-      padding: const EdgeInsets.all(16),
-      itemBuilder: (context, i) {
-        if (i.isOdd) return const Divider();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Gerador de nomes",
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.deepPurple[400],
+        actions: [
+          IconButton(
+            onPressed: _pushSaved,
+            icon: const Icon(Icons.list),
+            tooltip: "Salvar favoritos",
+          ),
+        ],
+      ),
+      // ListView com Scroll infinito
+      body: ListView.builder(
+        // Espaçamento de 16 em todos os lados da lista.
+        padding: const EdgeInsets.all(16),
+        itemBuilder: (context, i) {
+          if (i.isOdd) return const Divider();
 
-        final index = i ~/ 2;
-        if (index >= _suggestions.length) {
-          _suggestions.addAll(generateWordPairs().take(10));
+          final index = i ~/ 2;
+          if (index >= _suggestions.length) {
+            _suggestions.addAll(generateWordPairs().take(10));
+          }
+
+          final alreadySaved = _saved.contains(_suggestions[index]);
+
+          return ListTile(
+            title: Text(
+              // Retorna cada item da lista com a primeira letra de cada palavra em maiúscula.
+              _suggestions[index].asPascalCase,
+              // Define a fonte como 18 que foi definida na variável "_biggerFont".
+              style: _biggerFont,
+            ),
+            trailing: Icon(
+              alreadySaved ? Icons.favorite : Icons.favorite_border,
+              color: alreadySaved ? Colors.red[800] : null,
+              semanticLabel: alreadySaved ? "Remover dos favoritos" : "Favoritar",
+            ),
+            onTap: () {
+              setState(() {
+                if (alreadySaved) {
+                  _saved.remove(_suggestions[index]);
+                } else {
+                  _saved.add(_suggestions[index]);
+                }
+              });
+            },
+          );
         }
+      ), 
+    );
+  }
+  void _pushSaved() {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        builder: (context) {
+          final tiles = _saved.map(
+            (pair) {
+              return ListTile(
+                title: Text(
+                  pair.asPascalCase,
+                  style: _biggerFont,
+                ),
+              );
+            },
+          );
+          final divided = tiles.isNotEmpty
+            ? ListTile.divideTiles(
+              context: context,
+              tiles: tiles,
+            ).toList() : <Widget>[];
 
-        final alreadySaved = _saved.contains(_suggestions[index]);
-
-        return ListTile(
-          title: Text(
-            // Retorna cada item da lista com a primeira letra de cada palavra em maiúscula.
-            _suggestions[index].asPascalCase,
-            // Define a fonte como 18 que foi definida na variável "_biggerFont".
-            style: _biggerFont,
-          ),
-          trailing: Icon(
-            alreadySaved ? Icons.favorite : Icons.favorite_border,
-            color: alreadySaved ? Colors.red : null,
-            semanticLabel: alreadySaved ? "Remover dos favoritos" : "Favoritar",
-          ),
-        );
-      }
+          return Scaffold(
+            appBar: AppBar(
+              title: const Text("Salvar favoritos"),
+            ),
+            body: ListView(padding: const EdgeInsets.all(16), children: divided),
+          );
+        }
+      )
     );
   }
 }
+
