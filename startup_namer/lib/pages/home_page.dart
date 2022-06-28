@@ -8,8 +8,13 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Gerador de nomes"),
-        backgroundColor: Colors.deepPurple[400],
+        title: const Text(
+          "Gerador de nomes",
+          style: TextStyle(
+            color: Colors.black
+          )
+        ),
+        backgroundColor: Colors.white,
         centerTitle: true,
       ),
       body: const Center(
@@ -35,7 +40,9 @@ class _RandomWordsState extends State<RandomWords> {
     // Define o tamanho da fonte como 18.
     fontSize: 18,
     // Define o peso da fonte como 600.
-    fontWeight: FontWeight.w600
+    fontWeight: FontWeight.w600,
+    // Definindo a cor do Texto.
+    color: Colors.black54
   );
 
   @override
