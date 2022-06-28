@@ -46,7 +46,6 @@ class _RandomWordsState extends State<RandomWords> {
           "Gerador de nomes",
         ),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple[400],
         actions: [
           IconButton(
             onPressed: _pushSaved,

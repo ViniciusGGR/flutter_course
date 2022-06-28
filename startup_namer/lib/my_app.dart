@@ -10,7 +10,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Gerador de nomes",
       theme: ThemeData(
-        primarySwatch: Colors.deepPurple,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.deepPurple[400],
+          foregroundColor: Colors.white
+        ),
       ),
       home: const HomePage(),
     );
