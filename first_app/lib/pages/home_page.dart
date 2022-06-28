@@ -32,13 +32,17 @@ class _RandomWordsState extends State<RandomWords> {
 
   // Variável que define uma fonte maior.
   final _biggerFont = const TextStyle(
-    fontSize: 18
+    // Define o tamanho da fonte como 18.
+    fontSize: 18,
+    // Define o peso da fonte como 600.
+    fontWeight: FontWeight.w600
   );
 
   @override
   Widget build(BuildContext context) {
     // ListView com Scroll infinito
     return ListView.builder(
+      // Espaçamento de 16 em todos os lados da lista.
       padding: const EdgeInsets.all(16),
       itemBuilder: (context, i) {
         if (i.isOdd) return const Divider();
@@ -50,7 +54,9 @@ class _RandomWordsState extends State<RandomWords> {
 
         return ListTile(
           title: Text(
+            // Retorna cada item da lista com a primeira letra de cada palavra em maiúscula.
             _suggestions[index].asPascalCase,
+            // Define a fonte como 18 que foi definida na variável "_biggerFont".
             style: _biggerFont,
           ),
         );
