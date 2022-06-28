@@ -7,12 +7,12 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Meu primeiro App"),
+        title: const Text("Nomes para Startup"),
         backgroundColor: Colors.deepPurple[400],
         centerTitle: true,
       ),
       body: const Center(
-        child: Text("Bem-vindo."),
+        child: Text("Hello World"),
       ),
     );
   }
