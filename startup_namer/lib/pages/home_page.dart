@@ -50,7 +50,7 @@ class _RandomWordsState extends State<RandomWords> {
           IconButton(
             onPressed: _pushSaved,
             icon: const Icon(Icons.list),
-            tooltip: "Salvar favoritos",
+            tooltip: "Favoritos",
           ),
         ],
       ),
@@ -116,7 +116,7 @@ class _RandomWordsState extends State<RandomWords> {
 
           return Scaffold(
             appBar: AppBar(
-              title: const Text("Salvar favoritos"),
+              title: const Text("Favoritos"),
             ),
             body: ListView(padding: const EdgeInsets.all(16), children: divided),
           );
