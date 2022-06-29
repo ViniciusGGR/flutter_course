@@ -6,12 +6,12 @@ Aplicativo simples que gera nomes aleatórios para uma empresa iniciante. O usu�
 
 ### HomePage do App  
 
-![HomePage](images/home_page.png =270x570)  
+![HomePage](images/home_page.png)  
 
 ### Adicionando nomes a seção de Favoritos.
 
-![HomePage Add Favorites](images/home_add_favorites.png =270x570)  
+![HomePage Add Favorites](images/home_add_favorites.png)  
 
 ### Favoritos  
 
-![Favorites](images/favorites.png =270x570)   
+![Favorites](images/favorites.png)   
